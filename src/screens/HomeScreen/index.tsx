@@ -1,30 +1,38 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+// Styles
+import { styles } from './styles';
+
 // Components
 import HeaderIOS from '@/src/components/Home/HeaderIOS';
-import { HeaderAndroid } from '@/src/components/Home/HeaderAndroid';
+import HeaderAndroid from '@/src/components/Home/HeaderAndroid';
 import ActionBanner from '@/src/components/Home/ActionBanner';
-// import { BigSlider } from '@components/Home/BigSlider';
-// import { PromoCards } from '@components/Home/PromoCards';
-// import { QuickActions } from '@components/Home/QuickActions';
-// import { ProductSection } from '@components/Home/ProductSection';
 
-const HomeScreen: React.FC = () => {
+const HomeScreen: FC = () => {
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      {Platform.OS === 'ios' ? <HeaderIOS /> : <HeaderAndroid />}
-      <ActionBanner />
+    <SafeAreaView style={styles.container} edges={['top']}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentInsetAdjustmentBehavior="never"
+        style={styles.scrollView}
+      >
+        {Platform.select({
+          ios: <HeaderIOS />,
+          android: <HeaderAndroid />,
+        })}
 
-      {/* <ActionBanner />
-      <BigSlider />
-      <PromoCards />
-      <QuickActions />
+        <ActionBanner />
 
-      <ProductSection title="Рекомендації на основі ваших переглядів" />
-      <ProductSection title="Найкращі пропозиції" /> */}
-    </ScrollView>
+        {/* інші блоки:
+        <BigSlider />
+        <PromoCards />
+        <QuickActions />
+        <ProductSection title="..." />
+        */}
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

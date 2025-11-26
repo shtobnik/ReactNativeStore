@@ -1,12 +1,20 @@
 // src/screens/Search/SearchScreen.tsx
-import React from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+// Styles
+import { globalStyles } from '@/src/styles/globalStyles';
+import { styles } from './styles';
+
+// Types
 import type { SearchScreenProps } from '../../navigation/types';
 
-export const SearchScreen = (_props: SearchScreenProps) => {
+const SearchScreen = (_props: SearchScreenProps) => {
   return (
-    <View>
+    <SafeAreaView style={[globalStyles.container, styles.container]} edges={['top']}>
       <Text>Search</Text>
-    </View>
+    </SafeAreaView>
   );
 };
+
+export default SearchScreen;

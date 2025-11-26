@@ -3,7 +3,7 @@ import { View, TextInput, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-export const HeaderAndroid: React.FC = () => {
+const HeaderAndroid: React.FC = () => {
   return (
     <View style={styles.container}>
       <View style={styles.searchContainer}>
@@ -18,3 +18,5 @@ export const HeaderAndroid: React.FC = () => {
     </View>
   );
 };
+
+export default HeaderAndroid;
