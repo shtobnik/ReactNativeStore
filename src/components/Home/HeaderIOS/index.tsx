@@ -1,9 +1,8 @@
 import { FC } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 // Components
-import { SearchIcon, MicIcon, QrCodeIcon } from '@/src/components/IconButtons';
 import SearchBar from '@/src/components/SearchBar';
 
 // Styles
