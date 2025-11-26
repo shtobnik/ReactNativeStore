@@ -28,5 +28,5 @@ export const SearchIcon = createIcon(SearchSvg, 26, 26);
 export const CartIcon = createIcon(CartSvg, 30, 30);
 export const FavoritesIcon = createIcon(FavoritesSvg, 30, 30);
 export const ProfileIcon = createIcon(ProfileSvg, 30, 30);
-export const MicIcon = createIcon(MicSvg, 26, 26);
+export const MicIcon = createIcon(MicSvg, 22, 22);
 export const QrCodeIcon = createIcon(QrCodeSvg, 26, 26);
