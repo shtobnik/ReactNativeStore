@@ -1,24 +1,25 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+  wrapper: {
+    paddingHorizontal: 16,
+    marginTop: 12,
+  },
   container: {
-    width: '100%',
-    backgroundColor: '#000000',
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: '#1A1A1A',
+    borderRadius: 12,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
   },
   text: {
     fontSize: 14,
+    lineHeight: 20,
     fontWeight: '600',
-    color: '#ffffff',
-    textAlign: 'center',
   },
   white: {
-    color: '#ffffff',
+    color: '#FFFFFF',
   },
   yellow: {
-    color: '#FDD835',
+    color: '#FFD500',
   },
 });

@@ -19,7 +19,7 @@ export const BottomTabs = () => (
     screenOptions={{
       headerShown: false,
       tabBarActiveTintColor: '#10B5E8',
-      tabBarInactiveTintColor: '#1C274C',
+      tabBarInactiveTintColor: '#fff',
       tabBarShowLabel: false,
       tabBarStyle: styles.tabBar,
     }}
@@ -29,6 +29,7 @@ export const BottomTabs = () => (
       component={HomeScreen}
       options={{
         tabBarIcon: HomeIcon,
+        sceneStyle: { backgroundColor: '#1A1A1A' },
       }}
     />
 
@@ -37,6 +38,7 @@ export const BottomTabs = () => (
       component={SearchScreen}
       options={{
         tabBarIcon: SearchIcon,
+        sceneStyle: { backgroundColor: '#1A1A1A' },
       }}
     />
 
@@ -46,6 +48,7 @@ export const BottomTabs = () => (
       options={{
         tabBarBadge: 9,
         tabBarIcon: CartIcon,
+        sceneStyle: { backgroundColor: '#1A1A1A' },
       }}
     />
 
@@ -54,6 +57,7 @@ export const BottomTabs = () => (
       component={FavoritesScreen}
       options={{
         tabBarIcon: FavoritesIcon,
+        sceneStyle: { backgroundColor: '#1A1A1A' },
       }}
     />
 
@@ -62,6 +66,7 @@ export const BottomTabs = () => (
       component={ProfileScreen}
       options={{
         tabBarIcon: ProfileIcon,
+        sceneStyle: { backgroundColor: '#1A1A1A' },
       }}
     />
   </Tab.Navigator>

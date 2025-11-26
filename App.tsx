@@ -1,5 +1,14 @@
-import { RootNavigation } from './src/navigation';
+import React, { FC } from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-export default function App() {
-  return <RootNavigation />;
-}
+import RootNavigation from '@/src/navigation';
+
+const App: FC = () => {
+  return (
+    <SafeAreaProvider>
+      <RootNavigation />
+    </SafeAreaProvider>
+  );
+};
+
+export default App;

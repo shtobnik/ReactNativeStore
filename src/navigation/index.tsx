@@ -1,15 +1,15 @@
-// src/navigation/RootNavigation.tsx
-import React from 'react';
+import React, { FC } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { BottomTabs } from '../components/BottomTabs';
 import { ProductScreen } from '../screens/ProductScreen';
+
 import type { RootStackParamList } from './types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-export const RootNavigation: React.FC = () => {
+const RootNavigation: FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -17,7 +17,7 @@ export const RootNavigation: React.FC = () => {
         screenOptions={{
           headerShown: false,
           animation: 'slide_from_right',
-          contentStyle: { backgroundColor: '#ffffff' },
+          contentStyle: { backgroundColor: '#1A1A1A' },
         }}
       >
         <Stack.Screen name="BottomTabs" component={BottomTabs} />
@@ -34,3 +34,5 @@ export const RootNavigation: React.FC = () => {
     </NavigationContainer>
   );
 };
+
+export default RootNavigation;

@@ -1,8 +1,11 @@
 import React from 'react';
 import { ScrollView, Platform } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+// Components
 import HeaderIOS from '@/src/components/Home/HeaderIOS';
 import { HeaderAndroid } from '@/src/components/Home/HeaderAndroid';
-// import { ActionBanner } from '@components/Home/ActionBanner';
+import ActionBanner from '@/src/components/Home/ActionBanner';
 // import { BigSlider } from '@components/Home/BigSlider';
 // import { PromoCards } from '@components/Home/PromoCards';
 // import { QuickActions } from '@components/Home/QuickActions';
@@ -12,6 +15,7 @@ const HomeScreen: React.FC = () => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       {Platform.OS === 'ios' ? <HeaderIOS /> : <HeaderAndroid />}
+      <ActionBanner />
 
       {/* <ActionBanner />
       <BigSlider />
