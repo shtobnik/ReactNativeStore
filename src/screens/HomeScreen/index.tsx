@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 // Styles
 import { styles } from './styles';
+import { Text } from 'react-native';
 
 // Components
 import HeaderIOS from '@/src/components/Home/HeaderIOS';
@@ -24,6 +25,8 @@ const HomeScreen: FC = () => {
         })}
 
         <ActionBanner />
+
+        <Text style={styles.text}>HomeScreen</Text>
 
         {/* інші блоки:
         <BigSlider />

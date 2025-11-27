@@ -7,19 +7,9 @@ export const styles = StyleSheet.create({
     backgroundColor: '#121212',
   },
 
-  searchContainer: {
-    flexDirection: 'row',
-    backgroundColor: '#1F1F1F',
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    alignItems: 'center',
-    borderRadius: 12,
-  },
-
-  input: {
-    flex: 1,
+  text: {
     color: '#ffffff',
-    marginHorizontal: 10,
-    fontSize: 15,
+    fontSize: 16,
+    fontWeight: '600',
   },
 });

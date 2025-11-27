@@ -1,17 +1,12 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#1A1A1A',
+  },
   container: {
     flex: 1,
-  },
-
-  scrollView: {
-    flex: 1,
-  },
-
-  text: {
-    color: '#ffffff',
-    fontSize: 16,
-    fontWeight: '600',
+    backgroundColor: '#1A1A1A',
   },
 });
