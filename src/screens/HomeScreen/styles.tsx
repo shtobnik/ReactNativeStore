@@ -1,10 +1,21 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+
   scrollView: {
     flex: 1,
   },
+
   text: {
-    marginTop: 20,
+    color: '#ffffff',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+
+  content: {
+    paddingHorizontal: 16,
   },
 });

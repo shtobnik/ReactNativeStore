@@ -6,7 +6,9 @@ export const styles = StyleSheet.create({
   },
 
   container: {
-    paddingBottom: 10,
+    paddingBottom: 30,
+    borderBottomWidth: 0.2,
+    borderBottomColor: '#ccc',
   },
 
   logo: {

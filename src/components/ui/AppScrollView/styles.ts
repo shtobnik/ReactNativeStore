@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
   },
 
   contentContainer: {
-    paddingBottom: 40, // для безпечного скролу, можна міняти
+    paddingBottom: 40,
   },
 
   inner: {

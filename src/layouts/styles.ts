@@ -10,8 +10,5 @@ export const styles = StyleSheet.create({
     backgroundColor: '#1A1A1A',
     paddingHorizontal: 16,
     paddingTop: 12,
-
-    // Global default text styles
-    // (під’єднується для всіх вкладених елементів)
   },
 });

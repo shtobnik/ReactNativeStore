@@ -1,26 +1,41 @@
 import React, { FC } from 'react';
-import { Platform } from 'react-native';
+import { ScrollView, Platform, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import AppLayout from '@/src/layouts/AppLayout';
-import AppScrollView from '@/src/components/ui/AppScrollView';
-import AppText from '@/src/components/ui/AppText';
+// Styles
+import { styles } from './styles';
+import { Text } from 'react-native';
 
+// Components
 import HeaderIOS from '@/src/components/Home/HeaderIOS';
 import ActionBanner from '@/src/components/Home/ActionBanner';
 
-export const HomeScreen: FC = () => {
+const HomeScreen: FC = () => {
   return (
-    <AppLayout>
-      <AppScrollView>
+    <SafeAreaView style={styles.container} edges={['top']}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentInsetAdjustmentBehavior="never"
+        style={styles.scrollView}
+      >
         {Platform.select({
           ios: <HeaderIOS />,
         })}
 
         <ActionBanner />
 
-        <AppText>HomeScreen</AppText>
-      </AppScrollView>
-    </AppLayout>
+        <View style={styles.content}>
+          <Text style={styles.text}>HomeScreen !!!</Text>
+        </View>
+
+        {/* інші блоки:
+        <BigSlider />
+        <PromoCards />
+        <QuickActions />
+        <ProductSection title="..." />
+        */}
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
