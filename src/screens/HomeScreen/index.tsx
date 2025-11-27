@@ -1,19 +1,18 @@
 import React, { FC } from 'react';
 import { ScrollView, Platform } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
-// Styles
 import { styles } from './styles';
-import { Text } from 'react-native';
 
-// Components
+import AppLayout from '@/src/layouts/AppLayout';
+import AppText from '@/src/components/ui/AppText';
+
 import HeaderIOS from '@/src/components/Home/HeaderIOS';
 import HeaderAndroid from '@/src/components/Home/HeaderAndroid';
 import ActionBanner from '@/src/components/Home/ActionBanner';
 
 const HomeScreen: FC = () => {
   return (
-    <SafeAreaView style={styles.container} edges={['top']}>
+    <AppLayout>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="never"
@@ -26,16 +25,11 @@ const HomeScreen: FC = () => {
 
         <ActionBanner />
 
-        <Text style={styles.text}>HomeScreen</Text>
+        <AppText style={styles.text}>HomeScreen</AppText>
 
-        {/* інші блоки:
-        <BigSlider />
-        <PromoCards />
-        <QuickActions />
-        <ProductSection title="..." />
-        */}
+        {/* Тут твої інші блоки */}
       </ScrollView>
-    </SafeAreaView>
+    </AppLayout>
   );
 };
 

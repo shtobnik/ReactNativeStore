@@ -1,10 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  scrollView: {
-    flex: 1,
-  },
   text: {
-    marginTop: 20,
+    color: '#FFFFFF',
+    fontFamily: 'Inter-Regular',
+    fontSize: 16,
   },
 });
