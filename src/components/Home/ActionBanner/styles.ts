@@ -4,6 +4,7 @@ export const styles = StyleSheet.create({
   wrapper: {
     paddingHorizontal: 16,
     marginTop: 12,
+    marginHorizontal: -16,
   },
   container: {
     backgroundColor: '#1A1A1A',
