@@ -11,6 +11,10 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
   },
 
+  headerAndroid: {
+    paddingVertical: 10,
+  },
+
   leftBtn: {
     width: 40,
     justifyContent: 'center',

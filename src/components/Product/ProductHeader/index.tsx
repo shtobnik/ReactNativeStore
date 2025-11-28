@@ -1,6 +1,6 @@
 // React & RN
-import React, { FC } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { FC } from 'react';
+import { Text, TouchableOpacity, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -18,7 +18,10 @@ const ProductHeader: FC<ProductHeaderProps> = () => {
   const navigation = useNavigation<RootStackNavigationProp>();
 
   return (
-    <SafeAreaView edges={['top']} style={styles.header}>
+    <SafeAreaView
+      edges={['top']}
+      style={[styles.header, Platform.OS === 'android' && styles.headerAndroid]}
+    >
       {/* Back Button */}
       <TouchableOpacity style={styles.leftBtn} onPress={() => navigation.goBack()}>
         <BackIcon color="#fff" focused={false} size={24} />
