@@ -11,6 +11,7 @@ import HeaderIOS from '@/src/components/Home/HeaderIOS';
 import ActionBanner from '@/src/components/Home/ActionBanner';
 import PromoSlider from '@/src/components/PromoSlider';
 import PromoBlock from '@/src/components/PromoBlock';
+import SearchBar from '@/src/components/SearchBar';
 
 const HomeScreen: FC = () => {
   const slides = [
@@ -61,6 +62,10 @@ const HomeScreen: FC = () => {
               color="#212E22"
             />
           </View>
+
+          {Platform.select({
+            android: <SearchBar />,
+          })}
           <Text style={styles.text}>HomeScreen !!!</Text>
         </View>
 
