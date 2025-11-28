@@ -1,16 +1,21 @@
-import { FC } from 'react';
-import { View, TextInput, TouchableOpacity } from 'react-native';
+// React & RN
+import React, { FC } from 'react';
+import { View, TextInput } from 'react-native';
 
+// Components
 import { SearchIcon, MicIcon, QrCodeIcon } from '@/src/components/IconButtons';
 
+// Styles
 import { styles } from './styles';
 
+// Types
 interface SearchBarProps {
   placeholder?: string;
   showMic?: boolean;
   showQr?: boolean;
   onMicPress?: () => void;
   onQrPress?: () => void;
+  onChangeText?: (value: string) => void; // <-- зробили опційним
 }
 
 const SearchBar: FC<SearchBarProps> = ({
@@ -19,27 +24,39 @@ const SearchBar: FC<SearchBarProps> = ({
   showQr = true,
   onMicPress,
   onQrPress,
+  onChangeText,
 }) => {
+  const handleChangeText = (text: string): void => {
+    if (onChangeText) {
+      onChangeText(text);
+    }
+  };
+
   return (
     <View style={styles.searchContainer}>
-      {/* Ліва іконка пошуку */}
+      {/* Left icon */}
       <SearchIcon focused={false} color="#9CA3AF" size={18} />
 
-      {/* Інпут */}
-      <TextInput style={styles.input} placeholder={placeholder} placeholderTextColor="#9CA3AF" />
+      {/* Input */}
+      <TextInput
+        style={styles.input}
+        placeholder={placeholder}
+        placeholderTextColor="#9CA3AF"
+        onChangeText={handleChangeText} // <-- тут викликаємо наш хендлер
+      />
 
-      {/* Праві іконки */}
+      {/* Right icons */}
       <View style={styles.rightIcons}>
         {showMic && (
-          <TouchableOpacity activeOpacity={0.7} onPress={onMicPress}>
+          <View onTouchEnd={onMicPress}>
             <MicIcon focused={false} color="#9CA3AF" size={26} />
-          </TouchableOpacity>
+          </View>
         )}
 
         {showQr && (
-          <TouchableOpacity style={styles.qrButton} activeOpacity={0.7} onPress={onQrPress}>
+          <View style={styles.qrButton} onTouchEnd={onQrPress}>
             <QrCodeIcon focused={false} color="#9CA3AF" size={26} />
-          </TouchableOpacity>
+          </View>
         )}
       </View>
     </View>

@@ -1,19 +1,47 @@
-// src/screens/Search/SearchScreen.tsx
-import { Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+// React & RN
+import React, { FC, useState } from 'react';
+import { View } from 'react-native';
+
+// API
+import { products, Product } from '@/src/api/products';
+
+// Components
+import SearchBar from '@/src/components/SearchBar';
+import SearchResults from '@/src/components/SearchResults';
+import AppLayout from '@/src/layouts/AppLayout';
 
 // Styles
-import { globalStyles } from '@/src/styles/globalStyles';
 import { styles } from './styles';
 
-// Types
-import type { SearchScreenProps } from '../../navigation/types';
+const SearchScreen: FC = () => {
+  const [query, setQuery] = useState<string>('');
+  const [results, setResults] = useState<Product[]>([]);
 
-const SearchScreen = (_props: SearchScreenProps) => {
+  const handleSearch = (text: string): void => {
+    setQuery(text);
+
+    if (text.trim().length === 0) {
+      setResults([]);
+      return;
+    }
+
+    const filtered = products.filter(p => p.title.toLowerCase().includes(text.toLowerCase()));
+
+    setResults(filtered);
+  };
+
+  const handleSelect = (id: string): void => {
+    console.log('Вибрано товар:', id);
+    // Тут робимо навігацію:
+    // navigation.navigate('Product', { productId: id });
+  };
+
   return (
-    <SafeAreaView style={[globalStyles.container, styles.container]} edges={['top']}>
-      <Text>Search</Text>
-    </SafeAreaView>
+    <AppLayout>
+      <SearchBar onChangeText={handleSearch} />
+
+      <SearchResults results={results} onSelect={handleSelect} />
+    </AppLayout>
   );
 };
 
