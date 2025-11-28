@@ -9,16 +9,19 @@ export const styles = StyleSheet.create({
     borderRadius: 12,
     height: 44,
   },
+
   input: {
     flex: 1,
     fontSize: 16,
     color: '#FFFFFF',
     marginHorizontal: 8,
   },
+
   rightIcons: {
     flexDirection: 'row',
     alignItems: 'center',
   },
+
   qrButton: {
     marginLeft: 8,
   },

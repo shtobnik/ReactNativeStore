@@ -8,13 +8,12 @@ export const styles = StyleSheet.create({
     right: 0,
     paddingHorizontal: 16,
     paddingVertical: 12,
-    backgroundColor: '#121212',
+    backgroundColor: '#1A1A1A',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-
-    borderTopWidth: 1,
-    borderTopColor: '#222',
+    borderTopWidth: 0.5,
+    borderTopColor: '#ccc',
   },
 
   iconsWrapper: {

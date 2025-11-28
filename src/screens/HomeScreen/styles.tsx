@@ -20,8 +20,9 @@ export const styles = StyleSheet.create({
   },
 
   promoContainer: {
+    width: '100%',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     gap: 10,
   },

@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
     borderColor: '#393836',
     borderStyle: 'solid',
     overflow: 'hidden',
+    justifyContent: 'space-between',
   },
 
   badge: {

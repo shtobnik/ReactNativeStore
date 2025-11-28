@@ -1,10 +1,14 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { BottomTabs } from '../components/BottomTabs';
-import { ProductScreen } from '../screens/ProductScreen';
+// Components
+import { BottomTabs } from '@/src/components/BottomTabs';
+import { ProductScreen } from '@/src/screens/ProductScreen';
 
+// Styles
+import { styles } from './styles';
+// Types
 import type { RootStackParamList } from './types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -17,7 +21,7 @@ const RootNavigation: FC = () => {
         screenOptions={{
           headerShown: false,
           animation: 'slide_from_right',
-          contentStyle: { backgroundColor: '#1A1A1A' },
+          contentStyle: styles.navigationContainer,
         }}
       >
         <Stack.Screen name="BottomTabs" component={BottomTabs} />

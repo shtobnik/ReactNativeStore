@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   navigationContainer: {
-    backgroundColor: '#121212',
+    backgroundColor: '#1A1A1A',
   },
   menuIcon: {
     fontSize: 18,
