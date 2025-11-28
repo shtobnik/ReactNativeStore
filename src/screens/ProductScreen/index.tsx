@@ -1,29 +1,54 @@
+// React & RN
+import React, { FC } from 'react';
+import { View, Text, Image, Button, ScrollView } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
-import { RootStackParamList } from '../../navigation/types';
-import { products } from '../../api/products';
-import { View, Text, Image, Button } from 'react-native';
+
+// Navigation
+import { RootStackParamList } from '@/src/navigation/types';
+
+// Mock API
+import { products } from '@/src/api/products';
+
+// Components
+import ProductHeader from '@/src/components/ProductHeader';
 
 // Styles
 import { styles } from './styles';
+
 type ProductRouteProp = RouteProp<RootStackParamList, 'Product'>;
 
-type Props = {
+interface Props {
   route: ProductRouteProp;
-};
+}
 
-export const ProductScreen = ({ route }: Props) => {
+export const ProductScreen: FC<Props> = ({ route }) => {
   const { productId } = route.params;
+
   const product = products.find(p => p.id === productId);
 
-  if (!product) return <Text>Product not found</Text>;
+  if (!product) {
+    return (
+      <View>
+        <Text style={styles.title}>Товар не знайдено</Text>
+      </View>
+    );
+  }
 
   return (
-    <View style={styles.container}>
-      <Image source={{ uri: product.image }} style={styles.image} />
-      <Text style={styles.title}>{product.title}</Text>
-      <Text style={styles.price}>${product.price}</Text>
+    <View>
+      <ProductHeader title={product.title} />
 
-      <Button title="Add to cart" onPress={() => console.log('Add to cart')} />
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
+        <View style={styles.imageContainer}>
+          <Image source={{ uri: product.image }} style={styles.image} />
+        </View>
+
+        <Text style={styles.title}>{product.title}</Text>
+
+        <Text style={styles.price}>{product.price} ₴</Text>
+
+        <Button title="Додати в кошик" onPress={() => console.log('Add to cart')} />
+      </ScrollView>
     </View>
   );
 };

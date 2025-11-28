@@ -1,16 +1,26 @@
 // React & RN
 import React, { FC } from 'react';
-import { View, Image, Text } from 'react-native';
+import { View, Image, Text, TouchableOpacity } from 'react-native';
+
+// Navigation
+import { useNavigation } from '@react-navigation/native';
 
 // Styles
 import { styles } from './styles';
 
 // Types
 import { ItemCardProps } from './types';
+import { RootStackNavigationProp } from '@/src/navigation/types';
 
-const ItemCard: FC<ItemCardProps> = ({ title, image, badge, price, oldPrice, discount }) => {
+const ItemCard: FC<ItemCardProps> = ({ id, title, image, badge, price, oldPrice, discount }) => {
+  const navigation = useNavigation<RootStackNavigationProp>();
+
+  const openProduct = (): void => {
+    navigation.navigate('Product', { productId: id });
+  };
+
   return (
-    <View style={styles.card}>
+    <TouchableOpacity style={styles.card} activeOpacity={0.8} onPress={openProduct}>
       {/* {discount && <Text style={styles.discount}>{discount}%</Text>} */}
 
       <View style={styles.imageContainer}>
@@ -19,6 +29,7 @@ const ItemCard: FC<ItemCardProps> = ({ title, image, badge, price, oldPrice, dis
             <Text style={styles.badgeText}>{badge}</Text>
           </View>
         )}
+
         <Image source={{ uri: image }} style={styles.image} resizeMode="contain" />
       </View>
 
@@ -30,7 +41,7 @@ const ItemCard: FC<ItemCardProps> = ({ title, image, badge, price, oldPrice, dis
         {oldPrice && <Text style={styles.oldPrice}>{oldPrice} ₴</Text>}
         <Text style={styles.price}>{price} ₴</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

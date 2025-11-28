@@ -23,6 +23,7 @@ const ItemsSlider: FC<ItemsSliderProps> = ({ title, items }) => {
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
           <ItemCard
+            id={item.id}
             title={item.title}
             image={item.image}
             badge={item.badge}

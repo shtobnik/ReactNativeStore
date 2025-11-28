@@ -26,8 +26,7 @@ const RootNavigation: FC = () => {
           name="Product"
           component={ProductScreen}
           options={{
-            headerShown: true,
-            title: 'Product',
+            headerShown: false,
           }}
         />
       </Stack.Navigator>

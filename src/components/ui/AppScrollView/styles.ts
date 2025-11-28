@@ -8,8 +8,4 @@ export const styles = StyleSheet.create({
   contentContainer: {
     paddingBottom: 40,
   },
-
-  inner: {
-    paddingTop: 12,
-  },
 });

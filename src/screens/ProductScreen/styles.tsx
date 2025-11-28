@@ -2,11 +2,20 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    padding: 16,
+    paddingHorizontal: 16,
   },
 
   card: {
     marginBottom: 20,
+  },
+
+  imageContainer: {
+    width: '100%',
+    height: 300,
+    justifyContent: 'center',
+    marginBottom: 20,
+    borderRadius: 8,
+    backgroundColor: '#fff',
   },
 
   image: {
@@ -19,7 +28,11 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 26,
     fontWeight: '700',
-    marginTop: 16,
+    color: '#fff',
+    borderBottomWidth: 0.2,
+    borderBottomColor: '#ccc',
+    paddingBottom: 10,
+    marginBottom: 12,
   },
 
   price: {

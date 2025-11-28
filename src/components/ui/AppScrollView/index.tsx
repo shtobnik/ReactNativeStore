@@ -21,7 +21,7 @@ const AppScrollView: FC<AppScrollViewProps> = ({
       contentContainerStyle={[styles.contentContainer, contentContainerStyle]}
       {...rest}
     >
-      <View style={styles.inner}>{children}</View>
+      <View>{children}</View>
     </ScrollView>
   );
 };
