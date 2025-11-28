@@ -8,6 +8,10 @@ import FavoritesSvg from '@assets/icons/favorites.svg';
 import ProfileSvg from '@assets/icons/user.svg';
 import MicSvg from '@assets/icons/mic.svg';
 import QrCodeSvg from '@assets/icons/scan.svg';
+import CategoriesSvg from '@assets/icons/categories.svg';
+import OrdersSvg from '@assets/icons/orders.svg';
+import SalesSvg from '@assets/icons/sales.svg';
+import BellSvg from '@assets/icons/bell.svg';
 import CardSvg from '@assets/images/card.svg';
 import SubscriptionSvg from '@assets/images/subscribe.svg';
 
@@ -34,3 +38,7 @@ export const MicIcon = createIcon(MicSvg, 22, 22);
 export const QrCodeIcon = createIcon(QrCodeSvg, 26, 26);
 export const CardIcon = createIcon(CardSvg, 24, 24);
 export const SubscriptionIcon = createIcon(SubscriptionSvg, 24, 24);
+export const CategoriesIcon = createIcon(CategoriesSvg, 24, 24);
+export const OrdersIcon = createIcon(OrdersSvg, 24, 24);
+export const SalesIcon = createIcon(SalesSvg, 24, 24);
+export const BellIcon = createIcon(BellSvg, 24, 24);

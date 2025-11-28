@@ -12,6 +12,8 @@ import ActionBanner from '@/src/components/Home/ActionBanner';
 import PromoSlider from '@/src/components/PromoSlider';
 import PromoBlock from '@/src/components/PromoBlock';
 import SearchBar from '@/src/components/SearchBar';
+import HomeMenu from '@/src/components/HomeMenu';
+import { CategoriesIcon, OrdersIcon, SalesIcon, BellIcon } from '@/src/components/IconButtons';
 
 const HomeScreen: FC = () => {
   const slides = [
@@ -29,6 +31,25 @@ const HomeScreen: FC = () => {
       id: '3',
       image: 'https://content2.rozetka.com.ua/banner_main/images_mobile_ua/original/626736558.png',
       content: null,
+    },
+  ];
+
+  const items = [
+    {
+      icon: <CategoriesIcon color="#fff" size={24} focused={false} />,
+      label: 'Категорії',
+    },
+    {
+      icon: <SalesIcon color="#fff" size={24} focused={false} />,
+      label: 'Знижки',
+    },
+    {
+      icon: <BellIcon color="#fff" size={24} focused={false} />,
+      label: 'Сповіщення',
+    },
+    {
+      icon: <OrdersIcon color="#fff" size={24} focused={false} />,
+      label: 'Замовлення',
     },
   ];
 
@@ -66,6 +87,7 @@ const HomeScreen: FC = () => {
           {Platform.select({
             android: <SearchBar />,
           })}
+          <HomeMenu items={items} />
           <Text style={styles.text}>HomeScreen !!!</Text>
         </View>
 
