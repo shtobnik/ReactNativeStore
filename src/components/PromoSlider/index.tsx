@@ -1,5 +1,5 @@
 // React & RN
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useRef, useEffect } from 'react';
 import {
   View,
   Text,
@@ -8,6 +8,7 @@ import {
   Dimensions,
   NativeScrollEvent,
   NativeSyntheticEvent,
+  FlatList as FlatListType,
 } from 'react-native';
 
 // Styles
@@ -18,8 +19,14 @@ import { SlideItem, PromoSliderProps } from './types';
 
 const { width } = Dimensions.get('window');
 
+const AUTOPLAY_INTERVAL = 3000; // 3 секунди
+
 const PromoSlider: FC<PromoSliderProps> = ({ data }) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [isUserScrolling, setIsUserScrolling] = useState<boolean>(false);
+
+  const flatListRef = useRef<FlatListType<SlideItem>>(null);
+  const autoplayRef = useRef<number | null>(null);
 
   const onScroll = (e: NativeSyntheticEvent<NativeScrollEvent>): void => {
     const xOffset = e.nativeEvent.contentOffset.x;
@@ -27,15 +34,51 @@ const PromoSlider: FC<PromoSliderProps> = ({ data }) => {
     setActiveIndex(index);
   };
 
+  const onScrollBeginDrag = (): void => {
+    setIsUserScrolling(true);
+
+    if (autoplayRef.current) {
+      clearInterval(autoplayRef.current);
+      autoplayRef.current = null;
+    }
+  };
+
+  const onScrollEndDrag = (): void => {
+    setIsUserScrolling(false);
+  };
+
+  /** AUTO PLAY */
+  useEffect(() => {
+    if (isUserScrolling) return;
+
+    autoplayRef.current = setInterval(() => {
+      const nextIndex = activeIndex + 1 >= data.length ? 0 : activeIndex + 1;
+
+      flatListRef.current?.scrollToIndex({
+        index: nextIndex,
+        animated: true,
+      });
+
+      setActiveIndex(nextIndex);
+    }, AUTOPLAY_INTERVAL);
+
+    return () => {
+      if (autoplayRef.current) clearInterval(autoplayRef.current);
+    };
+  }, [activeIndex, isUserScrolling, data.length]);
+
   return (
     <View style={styles.wrapper}>
       <FlatList
+        ref={flatListRef}
         data={data}
         keyExtractor={(item: SlideItem) => item.id}
         horizontal
         pagingEnabled
         showsHorizontalScrollIndicator={false}
         onScroll={onScroll}
+        onScrollBeginDrag={onScrollBeginDrag}
+        onScrollEndDrag={onScrollEndDrag}
         renderItem={({ item }: { item: SlideItem }) => (
           <View style={styles.slide}>
             {item.content && (
@@ -49,12 +92,21 @@ const PromoSlider: FC<PromoSliderProps> = ({ data }) => {
 
             {Array.isArray(item.image) ? (
               <View style={styles.imagesContainer}>
-                {item.image.map((image: string) => (
-                  <Image source={{ uri: image }} style={styles.phoneImage} resizeMode="contain" />
+                {item.image.map((image: string, idx: number) => (
+                  <Image
+                    key={idx}
+                    source={{ uri: image }}
+                    style={styles.phoneImage}
+                    resizeMode="contain"
+                  />
                 ))}
               </View>
             ) : (
-              <Image source={{ uri: item.image }} style={styles.contentImage} />
+              <Image
+                source={{ uri: item.image }}
+                style={styles.contentImage}
+                resizeMode="contain"
+              />
             )}
           </View>
         )}
