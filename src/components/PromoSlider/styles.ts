@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
     height: 190,
     backgroundColor: '#0F1737',
     borderRadius: 12,
+    marginBottom: 10,
   },
 
   slide: {

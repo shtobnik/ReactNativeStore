@@ -8,6 +8,8 @@ import FavoritesSvg from '@assets/icons/favorites.svg';
 import ProfileSvg from '@assets/icons/user.svg';
 import MicSvg from '@assets/icons/mic.svg';
 import QrCodeSvg from '@assets/icons/scan.svg';
+import CardSvg from '@assets/images/card.svg';
+import SubscriptionSvg from '@assets/images/subscribe.svg';
 
 export type TabIconProps = {
   focused: boolean;
@@ -30,3 +32,5 @@ export const FavoritesIcon = createIcon(FavoritesSvg, 30, 30);
 export const ProfileIcon = createIcon(ProfileSvg, 30, 30);
 export const MicIcon = createIcon(MicSvg, 22, 22);
 export const QrCodeIcon = createIcon(QrCodeSvg, 26, 26);
+export const CardIcon = createIcon(CardSvg, 24, 24);
+export const SubscriptionIcon = createIcon(SubscriptionSvg, 24, 24);

@@ -18,4 +18,11 @@ export const styles = StyleSheet.create({
   content: {
     paddingHorizontal: 16,
   },
+
+  promoContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: 10,
+  },
 });

@@ -10,6 +10,7 @@ import { Text } from 'react-native';
 import HeaderIOS from '@/src/components/Home/HeaderIOS';
 import ActionBanner from '@/src/components/Home/ActionBanner';
 import PromoSlider from '@/src/components/PromoSlider';
+import PromoBlock from '@/src/components/PromoBlock';
 
 const HomeScreen: FC = () => {
   const slides = [
@@ -45,6 +46,21 @@ const HomeScreen: FC = () => {
 
         <PromoSlider data={slides} />
         <View style={styles.content}>
+          <View style={styles.promoContainer}>
+            <PromoBlock
+              title="Картка STORE"
+              subtitle="Покупки з перевагами"
+              image="card"
+              color="#312C19"
+            />
+
+            <PromoBlock
+              title="Підписка Smart"
+              subtitle="Безкоштовна доставка"
+              image="subscribe"
+              color="#212E22"
+            />
+          </View>
           <Text style={styles.text}>HomeScreen !!!</Text>
         </View>
 
