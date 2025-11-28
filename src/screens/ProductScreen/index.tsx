@@ -10,7 +10,8 @@ import { RootStackParamList } from '@/src/navigation/types';
 import { products } from '@/src/api/products';
 
 // Components
-import ProductHeader from '@/src/components/ProductHeader';
+import ProductHeader from '@/src/components/Product/ProductHeader';
+import BottomActionBar from '@/src/components/Product/BottomActionBar';
 
 // Styles
 import { styles } from './styles';
@@ -35,7 +36,7 @@ export const ProductScreen: FC<Props> = ({ route }) => {
   }
 
   return (
-    <View>
+    <View style={styles.containerWrapper}>
       <ProductHeader title={product.title} />
 
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
@@ -49,6 +50,13 @@ export const ProductScreen: FC<Props> = ({ route }) => {
 
         <Button title="Додати в кошик" onPress={() => console.log('Add to cart')} />
       </ScrollView>
+
+      <BottomActionBar
+        onCompare={() => console.log('compare')}
+        onCart={() => console.log('add to cart')}
+        onWishlist={() => console.log('wishlist')}
+        onBuy={() => console.log('buy')}
+      />
     </View>
   );
 };

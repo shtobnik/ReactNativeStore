@@ -1,6 +1,10 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+  containerWrapper: {
+    flex: 1,
+  },
+
   container: {
     paddingHorizontal: 16,
   },

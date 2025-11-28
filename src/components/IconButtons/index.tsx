@@ -16,6 +16,7 @@ import CardSvg from '@assets/images/card.svg';
 import SubscriptionSvg from '@assets/images/subscribe.svg';
 import BackSvg from '@assets/icons/back.svg';
 import ShareSvg from '@assets/icons/share.svg';
+import CompareSvg from '@assets/icons/compare.svg';
 
 export type TabIconProps = {
   focused: boolean;
@@ -46,3 +47,4 @@ export const SalesIcon = createIcon(SalesSvg, 24, 24);
 export const BellIcon = createIcon(BellSvg, 24, 24);
 export const BackIcon = createIcon(BackSvg, 24, 24);
 export const ShareIcon = createIcon(ShareSvg, 24, 24);
+export const CompareIcon = createIcon(CompareSvg, 28, 28);
