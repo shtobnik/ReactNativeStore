@@ -9,8 +9,27 @@ import { Text } from 'react-native';
 // Components
 import HeaderIOS from '@/src/components/Home/HeaderIOS';
 import ActionBanner from '@/src/components/Home/ActionBanner';
+import PromoSlider from '@/src/components/PromoSlider';
 
 const HomeScreen: FC = () => {
+  const slides = [
+    {
+      id: '1',
+      image: 'https://content1.rozetka.com.ua/banner_main/images_mobile_ua/original/624786376.jpg',
+      content: null,
+    },
+    {
+      id: '2',
+      image: 'https://content1.rozetka.com.ua/banner_main/images_mobile_ua/original/626442356.png',
+      content: null,
+    },
+    {
+      id: '3',
+      image: 'https://content2.rozetka.com.ua/banner_main/images_mobile_ua/original/626736558.png',
+      content: null,
+    },
+  ];
+
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <ScrollView
@@ -24,6 +43,7 @@ const HomeScreen: FC = () => {
 
         <ActionBanner />
 
+        <PromoSlider data={slides} />
         <View style={styles.content}>
           <Text style={styles.text}>HomeScreen !!!</Text>
         </View>
