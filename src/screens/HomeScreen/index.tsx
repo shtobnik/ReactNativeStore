@@ -15,6 +15,9 @@ import HomeMenu from '@/src/components/HomeMenu';
 import { CategoriesIcon, OrdersIcon, SalesIcon, BellIcon } from '@/src/components/IconButtons';
 import ItemsSlider from '@/src/components/ItemsSlider/ItemsSlider';
 
+// Data
+import { products, ProductRecommendations } from '@/src/api/products';
+
 const HomeScreen: FC = () => {
   const slides = [
     {
@@ -50,104 +53,6 @@ const HomeScreen: FC = () => {
     {
       icon: <OrdersIcon color="#fff" size={24} focused={false} />,
       label: 'Замовлення',
-    },
-  ];
-
-  const goodsItems = [
-    {
-      id: '1',
-      title: 'Nike Air Max 270',
-      image:
-        'https://yesoriginal.com.ua/media/cache/catalog/products/e1/2b/a3/90188247-0-670x705_-jpg-84.webp',
-      badge: 'Топ продажів',
-      price: 180,
-      oldPrice: 200,
-      discount: 10,
-    },
-    {
-      id: '2',
-      title: 'Apple AirPods Pro',
-      image: 'https://images.prom.ua/4559284252_w1280_h640_4559284252.jpg',
-      badge: 'Топ продажів',
-      price: 249,
-      oldPrice: 269,
-      discount: 10,
-    },
-    {
-      id: '3',
-      title: 'Samsung Galaxy Watch',
-      image: 'https://content.rozetka.com.ua/goods/images/big/449499662.jpg',
-      badge: 'Топ продажів',
-      price: 299,
-      oldPrice: 319,
-      discount: 10,
-    },
-    {
-      id: '4',
-      title: 'Apple AirPods Pro',
-      image: 'https://images.prom.ua/4559284252_w1280_h640_4559284252.jpg',
-      badge: 'Топ продажів',
-      price: 249,
-      oldPrice: 269,
-      discount: 10,
-    },
-    {
-      id: '5',
-      title: 'Samsung Galaxy Watch',
-      image: 'https://content.rozetka.com.ua/goods/images/big/449499662.jpg',
-      badge: 'Топ продажів',
-      price: 299,
-      oldPrice: 319,
-      discount: 10,
-    },
-  ];
-
-  const goodsItems2 = [
-    {
-      id: '1',
-      title: 'Samsung Galaxy Watch',
-      image: 'https://content.rozetka.com.ua/goods/images/big/449499662.jpg',
-      badge: 'Топ продажів',
-      price: 299,
-      oldPrice: 319,
-      discount: 10,
-    },
-    {
-      id: '2',
-      title: 'Apple AirPods Pro',
-      image: 'https://images.prom.ua/4559284252_w1280_h640_4559284252.jpg',
-      badge: 'Топ продажів',
-      price: 249,
-      oldPrice: 269,
-      discount: 10,
-    },
-    {
-      id: '3',
-      title: 'Samsung Galaxy Watch',
-      image: 'https://content.rozetka.com.ua/goods/images/big/449499662.jpg',
-      badge: 'Топ продажів',
-      price: 299,
-      oldPrice: 319,
-      discount: 10,
-    },
-    {
-      id: '4',
-      title: 'Apple AirPods Pro',
-      image: 'https://images.prom.ua/4559284252_w1280_h640_4559284252.jpg',
-      badge: 'Топ продажів',
-      price: 249,
-      oldPrice: 269,
-      discount: 10,
-    },
-    {
-      id: '5',
-      title: 'Nike Air Max 270',
-      image:
-        'https://yesoriginal.com.ua/media/cache/catalog/products/e1/2b/a3/90188247-0-670x705_-jpg-84.webp',
-      badge: 'Топ продажів',
-      price: 180,
-      oldPrice: 200,
-      discount: 10,
     },
   ];
 
@@ -187,12 +92,13 @@ const HomeScreen: FC = () => {
           })}
           <HomeMenu items={menuItems} />
         </View>
-        <ItemsSlider title="Рекомендації на основі ваших переглядів" items={goodsItems} />
-        <ItemsSlider title="Найкращі пропозиції для вас" items={goodsItems2} />
 
-        {/* інші блоки:
-        <ProductSection title="..." />
-        */}
+        <ItemsSlider
+          title="Рекомендації на основі ваших переглядів"
+          items={ProductRecommendations}
+        />
+
+        <ItemsSlider title="Найкращі пропозиції для вас" items={products} />
       </ScrollView>
     </SafeAreaView>
   );

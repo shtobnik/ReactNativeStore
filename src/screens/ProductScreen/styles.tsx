@@ -9,14 +9,20 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
 
+  scrollView: {
+    paddingBottom: 200,
+  },
+
   card: {
     marginBottom: 20,
   },
 
   imageContainer: {
-    width: '100%',
+    width: '95%',
     height: 300,
     justifyContent: 'center',
+    boxSizing: 'border-box',
+    marginHorizontal: 'auto',
     marginBottom: 20,
     borderRadius: 8,
     backgroundColor: '#fff',

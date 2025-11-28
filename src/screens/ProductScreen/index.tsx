@@ -7,11 +7,12 @@ import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from '@/src/navigation/types';
 
 // Mock API
-import { products } from '@/src/api/products';
+import { products, ProductRecommendations } from '@/src/api/products';
 
 // Components
 import ProductHeader from '@/src/components/Product/ProductHeader';
 import BottomActionBar from '@/src/components/Product/BottomActionBar';
+import ProductInfoBlock from '@/src/components/Product/ProductInfoBlock';
 
 // Styles
 import { styles } from './styles';
@@ -25,12 +26,16 @@ interface Props {
 export const ProductScreen: FC<Props> = ({ route }) => {
   const { productId } = route.params;
 
-  const product = products.find(p => p.id === productId);
+  const product =
+    products.find(p => p.id === productId) || ProductRecommendations.find(p => p.id === productId);
 
   if (!product) {
     return (
-      <View>
-        <Text style={styles.title}>Товар не знайдено</Text>
+      <View style={styles.containerWrapper}>
+        <ProductHeader title={'Огляд'} />
+        <View>
+          <Text style={styles.title}>Товар не знайдено</Text>
+        </View>
       </View>
     );
   }
@@ -39,16 +44,19 @@ export const ProductScreen: FC<Props> = ({ route }) => {
     <View style={styles.containerWrapper}>
       <ProductHeader title={product.title} />
 
-      <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollView}>
         <View style={styles.imageContainer}>
           <Image source={{ uri: product.image }} style={styles.image} />
         </View>
 
-        <Text style={styles.title}>{product.title}</Text>
-
-        <Text style={styles.price}>{product.price} ₴</Text>
-
-        <Button title="Додати в кошик" onPress={() => console.log('Add to cart')} />
+        <ProductInfoBlock
+          product={{
+            price: product.price,
+            oldPrice: product.price * 0.8,
+            discount: product.discount,
+            title: product.title,
+          }}
+        />
       </ScrollView>
 
       <BottomActionBar
