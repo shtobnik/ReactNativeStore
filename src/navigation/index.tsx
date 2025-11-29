@@ -17,14 +17,14 @@ const RootNavigation: FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="BottomTabs"
+        initialRouteName="MainTabs"
         screenOptions={{
           headerShown: false,
           animation: 'slide_from_right',
           contentStyle: styles.navigationContainer,
         }}
       >
-        <Stack.Screen name="BottomTabs" component={BottomTabs} />
+        <Stack.Screen name="MainTabs" component={BottomTabs} options={{ headerShown: false }} />
 
         <Stack.Screen
           name="Product"

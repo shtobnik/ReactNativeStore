@@ -12,7 +12,7 @@ import { styles } from './styles';
 import { ItemCardProps } from './types';
 import { RootStackNavigationProp } from '@/src/navigation/types';
 
-const ItemCard: FC<ItemCardProps> = ({ id, title, image, badge, price, oldPrice, discount }) => {
+const ItemCard: FC<ItemCardProps> = ({ id, title, image, badge, price, oldPrice }) => {
   const navigation = useNavigation<RootStackNavigationProp>();
 
   const openProduct = (): void => {

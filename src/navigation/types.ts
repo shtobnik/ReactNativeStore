@@ -8,8 +8,9 @@ import type { CompositeScreenProps } from '@react-navigation/native';
 
 // ---- Root stack (верхній рівень навігації) ----
 export type RootStackParamList = {
-  BottomTabs: undefined;
+  MainTabs: undefined;
   Product: { productId: string };
+  Search: { initialQuery?: string };
 };
 
 // ---- Bottom tabs (нижня навігація) ----

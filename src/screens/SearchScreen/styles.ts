@@ -4,4 +4,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  searchContainer: {
+    marginBottom: 10,
+  },
 });

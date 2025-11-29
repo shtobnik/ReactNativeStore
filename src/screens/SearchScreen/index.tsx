@@ -1,46 +1,69 @@
-// React & RN
-import React, { FC, useState } from 'react';
-import { View } from 'react-native';
-
-// API
-import { products, Product } from '@/src/api/products';
+import React, { FC, useState, useEffect } from 'react';
+import { FlatList, View } from 'react-native';
+import { RouteProp, useNavigation, NavigationProp } from '@react-navigation/native';
 
 // Components
 import SearchBar from '@/src/components/SearchBar';
-import SearchResults from '@/src/components/SearchResults';
+import ProductItem from '@/src/components/ItemsSlider/ItemCard';
 import AppLayout from '@/src/layouts/AppLayout';
 
-// Styles
+import { products, Product } from '@/src/api/products';
+import { RootStackParamList } from '@/src/navigation/types';
+
 import { styles } from './styles';
 
-const SearchScreen: FC = () => {
-  const [query, setQuery] = useState<string>('');
+type SearchRoute = RouteProp<RootStackParamList, 'Search'>;
+
+interface Props {
+  route: SearchRoute;
+}
+
+const SearchScreen: FC<Props> = ({ route }) => {
+  const initial = route.params?.initialQuery ?? '';
+
+  const [query, setQuery] = useState<string>(initial);
   const [results, setResults] = useState<Product[]>([]);
 
-  const handleSearch = (text: string): void => {
-    setQuery(text);
-
-    if (text.trim().length === 0) {
-      setResults([]);
-      return;
-    }
-
+  const search = (text: string): void => {
     const filtered = products.filter(p => p.title.toLowerCase().includes(text.toLowerCase()));
-
     setResults(filtered);
   };
 
-  const handleSelect = (id: string): void => {
-    console.log('Вибрано товар:', id);
-    // Тут робимо навігацію:
-    // navigation.navigate('Product', { productId: id });
-  };
+  useEffect(() => {
+    if (initial.length > 0) {
+      search(initial);
+    }
+  }, [initial]);
 
   return (
     <AppLayout>
-      <SearchBar onChangeText={handleSearch} />
-
-      <SearchResults results={results} onSelect={handleSelect} />
+      <FlatList
+        data={results}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => (
+          <ProductItem
+            id={item.id}
+            title={item.title}
+            image={item.image}
+            badge={item.badge}
+            price={item.price}
+            oldPrice={item.oldPrice}
+            discount={item.discount}
+          />
+        )}
+        ListHeaderComponent={
+          <View style={styles.searchContainer}>
+            <SearchBar
+              placeholder="Я шукаю..."
+              onChangeText={text => {
+                setQuery(text);
+                search(text);
+              }}
+              onSubmit={search}
+            />
+          </View>
+        }
+      />
     </AppLayout>
   );
 };

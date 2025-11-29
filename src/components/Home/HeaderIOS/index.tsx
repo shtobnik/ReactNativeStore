@@ -1,20 +1,24 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { View, Text } from 'react-native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 
-// Components
 import SearchBar from '@/src/components/SearchBar';
-
-// Styles
+import { RootStackParamList } from '@/src/navigation/types';
 import { styles } from './styles';
 
 const HeaderIOS: FC = () => {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const [query, setQuery] = useState<string>('');
+
+  const handleSubmit = (value: string): void => {
+    navigation.navigate('Search', { initialQuery: value });
+  };
+
   return (
     <View style={styles.container}>
-      {/* LOGO */}
       <Text style={styles.logo}>STORE</Text>
 
-      {/* SEARCH */}
-      <SearchBar />
+      <SearchBar onChangeText={setQuery} onSubmit={handleSubmit} />
     </View>
   );
 };

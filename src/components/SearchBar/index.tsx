@@ -1,6 +1,11 @@
 // React & RN
-import React, { FC } from 'react';
-import { View, TextInput } from 'react-native';
+import React, { FC, useState } from 'react';
+import {
+  View,
+  TextInput,
+  NativeSyntheticEvent,
+  TextInputSubmitEditingEventData,
+} from 'react-native';
 
 // Components
 import { SearchIcon, MicIcon, QrCodeIcon } from '@/src/components/IconButtons';
@@ -15,7 +20,10 @@ interface SearchBarProps {
   showQr?: boolean;
   onMicPress?: () => void;
   onQrPress?: () => void;
-  onChangeText?: (value: string) => void; // <-- зробили опційним
+
+  // universal callbacks
+  onChangeText?: (value: string) => void;
+  onSubmit?: (value: string) => void;
 }
 
 const SearchBar: FC<SearchBarProps> = ({
@@ -25,39 +33,36 @@ const SearchBar: FC<SearchBarProps> = ({
   onMicPress,
   onQrPress,
   onChangeText,
+  onSubmit,
 }) => {
-  const handleChangeText = (text: string): void => {
-    if (onChangeText) {
-      onChangeText(text);
-    }
+  const [localValue, setLocalValue] = useState<string>('');
+
+  const handleChange = (text: string): void => {
+    setLocalValue(text);
+    if (onChangeText) onChangeText(text);
+  };
+
+  const handleSubmit = (e: NativeSyntheticEvent<TextInputSubmitEditingEventData>): void => {
+    if (onSubmit) onSubmit(e.nativeEvent.text);
   };
 
   return (
     <View style={styles.searchContainer}>
-      {/* Left icon */}
       <SearchIcon focused={false} color="#9CA3AF" size={18} />
 
-      {/* Input */}
       <TextInput
         style={styles.input}
         placeholder={placeholder}
         placeholderTextColor="#9CA3AF"
-        onChangeText={handleChangeText} // <-- тут викликаємо наш хендлер
+        value={localValue}
+        onChangeText={handleChange}
+        onSubmitEditing={handleSubmit}
+        returnKeyType="search"
       />
 
-      {/* Right icons */}
       <View style={styles.rightIcons}>
-        {showMic && (
-          <View onTouchEnd={onMicPress}>
-            <MicIcon focused={false} color="#9CA3AF" size={26} />
-          </View>
-        )}
-
-        {showQr && (
-          <View style={styles.qrButton} onTouchEnd={onQrPress}>
-            <QrCodeIcon focused={false} color="#9CA3AF" size={26} />
-          </View>
-        )}
+        {showMic && <MicIcon focused={false} color="#9CA3AF" size={26} />}
+        {showQr && <QrCodeIcon focused={false} color="#9CA3AF" size={26} />}
       </View>
     </View>
   );
