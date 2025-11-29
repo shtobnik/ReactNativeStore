@@ -1,11 +1,12 @@
 import React, { FC, useState, useEffect } from 'react';
-import { FlatList, View } from 'react-native';
+import { FlatList, View, Text } from 'react-native';
 import { RouteProp, useNavigation, NavigationProp } from '@react-navigation/native';
 
 // Components
 import SearchBar from '@/src/components/SearchBar';
 import ProductItem from '@/src/components/ItemsSlider/ItemCard';
 import AppLayout from '@/src/layouts/AppLayout';
+import Header from '@/src/components/Header';
 
 import { products, Product } from '@/src/api/products';
 import { RootStackParamList } from '@/src/navigation/types';
@@ -36,12 +37,23 @@ const SearchScreen: FC<Props> = ({ route }) => {
   }, [initial]);
 
   return (
-    <AppLayout>
+    <View style={styles.container}>
+      <Header
+        title="Пошук"
+        isSearchIncluded
+        searchValue={query}
+        onSearchChange={text => {
+          setQuery(text);
+          search(text);
+        }}
+        onSearchSubmit={search}
+      />
+
       <FlatList
         data={results}
         keyExtractor={item => item.id}
-        numColumns={2} // ← Додаємо КОЛОНКИ
-        columnWrapperStyle={styles.row} // ← Вирівнювання між елементами
+        numColumns={2}
+        columnWrapperStyle={styles.row}
         contentContainerStyle={styles.listContent}
         renderItem={({ item }) => (
           <ProductItem
@@ -53,20 +65,8 @@ const SearchScreen: FC<Props> = ({ route }) => {
             oldPrice={item.oldPrice}
           />
         )}
-        ListHeaderComponent={
-          <View style={styles.searchContainer}>
-            <SearchBar
-              placeholder="Я шукаю..."
-              onChangeText={text => {
-                setQuery(text);
-                search(text);
-              }}
-              onSubmit={search}
-            />
-          </View>
-        }
       />
-    </AppLayout>
+    </View>
   );
 };
 

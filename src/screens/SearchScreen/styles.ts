@@ -19,4 +19,10 @@ export const styles = StyleSheet.create({
     paddingBottom: 60,
     gap: 15,
   },
+
+  searchTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
 });

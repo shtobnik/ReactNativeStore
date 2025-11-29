@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 // Components
-import { BackIcon, ShareIcon } from '../../IconButtons';
+import { BackIcon, ShareIcon } from '@/src/components/IconButtons';
 
 // Styles
 import { styles } from './styles';
