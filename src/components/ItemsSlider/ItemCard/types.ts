@@ -6,4 +6,5 @@ export interface ItemCardProps {
   price: number;
   oldPrice?: number;
   discount?: number;
+  variant?: 'slider' | 'list'; // NEW
 }

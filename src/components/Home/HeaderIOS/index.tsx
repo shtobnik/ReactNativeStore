@@ -1,6 +1,6 @@
-import { FC, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 import { View, Text } from 'react-native';
-import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { useNavigation, NavigationProp, useFocusEffect } from '@react-navigation/native';
 
 import SearchBar from '@/src/components/SearchBar';
 import { RootStackParamList } from '@/src/navigation/types';
@@ -14,11 +14,17 @@ const HeaderIOS: FC = () => {
     navigation.navigate('Search', { initialQuery: value });
   };
 
+  useFocusEffect(
+    useCallback(() => {
+      setQuery('');
+    }, []),
+  );
+
   return (
     <View style={styles.container}>
       <Text style={styles.logo}>STORE</Text>
 
-      <SearchBar onChangeText={setQuery} onSubmit={handleSubmit} />
+      <SearchBar value={query} onChangeText={setQuery} onSubmit={handleSubmit} />
     </View>
   );
 };

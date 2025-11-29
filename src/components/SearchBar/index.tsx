@@ -1,5 +1,5 @@
 // React & RN
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import {
   View,
   TextInput,
@@ -13,20 +13,19 @@ import { SearchIcon, MicIcon, QrCodeIcon } from '@/src/components/IconButtons';
 // Styles
 import { styles } from './styles';
 
-// Types
 interface SearchBarProps {
+  value?: string;
   placeholder?: string;
   showMic?: boolean;
   showQr?: boolean;
+  onChangeText?: (text: string) => void;
+  onSubmit?: (text: string) => void;
   onMicPress?: () => void;
   onQrPress?: () => void;
-
-  // universal callbacks
-  onChangeText?: (value: string) => void;
-  onSubmit?: (value: string) => void;
 }
 
 const SearchBar: FC<SearchBarProps> = ({
+  value,
   placeholder = 'Я шукаю...',
   showMic = true,
   showQr = true,
@@ -37,13 +36,20 @@ const SearchBar: FC<SearchBarProps> = ({
 }) => {
   const [localValue, setLocalValue] = useState<string>('');
 
+  // 🟦 Якщо прийшов зовнішній value → оновлюємо localValue
+  useEffect(() => {
+    if (value !== undefined) {
+      setLocalValue(value);
+    }
+  }, [value]);
+
   const handleChange = (text: string): void => {
     setLocalValue(text);
-    if (onChangeText) onChangeText(text);
+    onChangeText?.(text);
   };
 
   const handleSubmit = (e: NativeSyntheticEvent<TextInputSubmitEditingEventData>): void => {
-    if (onSubmit) onSubmit(e.nativeEvent.text);
+    onSubmit?.(e.nativeEvent.text);
   };
 
   return (
@@ -54,7 +60,7 @@ const SearchBar: FC<SearchBarProps> = ({
         style={styles.input}
         placeholder={placeholder}
         placeholderTextColor="#9CA3AF"
-        value={localValue}
+        value={value !== undefined ? value : localValue}
         onChangeText={handleChange}
         onSubmitEditing={handleSubmit}
         returnKeyType="search"

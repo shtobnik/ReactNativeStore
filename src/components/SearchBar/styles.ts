@@ -20,6 +20,7 @@ export const styles = StyleSheet.create({
   rightIcons: {
     flexDirection: 'row',
     alignItems: 'center',
+    gap: 15,
   },
 
   qrButton: {

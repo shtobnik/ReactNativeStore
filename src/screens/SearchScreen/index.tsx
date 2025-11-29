@@ -40,6 +40,9 @@ const SearchScreen: FC<Props> = ({ route }) => {
       <FlatList
         data={results}
         keyExtractor={item => item.id}
+        numColumns={2} // ← Додаємо КОЛОНКИ
+        columnWrapperStyle={styles.row} // ← Вирівнювання між елементами
+        contentContainerStyle={styles.listContent}
         renderItem={({ item }) => (
           <ProductItem
             id={item.id}
@@ -48,7 +51,6 @@ const SearchScreen: FC<Props> = ({ route }) => {
             badge={item.badge}
             price={item.price}
             oldPrice={item.oldPrice}
-            discount={item.discount}
           />
         )}
         ListHeaderComponent={
