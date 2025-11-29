@@ -25,4 +25,15 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#fff',
   },
+
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  emptyText: {
+    fontSize: 16,
+    color: '#fff',
+  },
 });

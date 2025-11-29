@@ -49,23 +49,30 @@ const SearchScreen: FC<Props> = ({ route }) => {
         onSearchSubmit={search}
       />
 
-      <FlatList
-        data={results}
-        keyExtractor={item => item.id}
-        numColumns={2}
-        columnWrapperStyle={styles.row}
-        contentContainerStyle={styles.listContent}
-        renderItem={({ item }) => (
-          <ProductItem
-            id={item.id}
-            title={item.title}
-            image={item.image}
-            badge={item.badge}
-            price={item.price}
-            oldPrice={item.oldPrice}
-          />
-        )}
-      />
+      {!results.length ? (
+        <View style={styles.emptyContainer}>
+          <Text style={styles.emptyText}>Нічого не знайдено</Text>
+        </View>
+      ) : (
+        <FlatList
+          data={results}
+          keyExtractor={item => item.id}
+          numColumns={2}
+          columnWrapperStyle={styles.row}
+          contentContainerStyle={styles.listContent}
+          renderItem={({ item }) => (
+            <ProductItem
+              id={item.id}
+              title={item.title}
+              image={item.image}
+              badge={item.badge}
+              price={item.price}
+              oldPrice={item.oldPrice}
+              variant="list"
+            />
+          )}
+        />
+      )}
     </View>
   );
 };

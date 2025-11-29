@@ -20,7 +20,11 @@ const ItemCard: FC<ItemCardProps> = ({ id, title, image, badge, price, oldPrice,
   };
 
   return (
-    <TouchableOpacity style={styles.card} activeOpacity={0.8} onPress={openProduct}>
+    <TouchableOpacity
+      style={[styles.card, variant === 'list' && styles.listCard]}
+      activeOpacity={0.8}
+      onPress={openProduct}
+    >
       {/* {discount && <Text style={styles.discount}>{discount}%</Text>} */}
 
       <View style={styles.imageContainer}>

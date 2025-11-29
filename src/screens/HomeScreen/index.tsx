@@ -1,6 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useCallback } from 'react';
 import { ScrollView, Platform, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 // Styles
 import { styles } from './styles';
@@ -15,10 +17,16 @@ import HomeMenu from '@/src/components/HomeMenu';
 import { CategoriesIcon, OrdersIcon, SalesIcon, BellIcon } from '@/src/components/IconButtons';
 import ItemsSlider from '@/src/components/ItemsSlider/ItemsSlider';
 
+// Types
+import { RootStackNavigationProp } from '@/src/navigation/types';
+
 // Data
 import { products, ProductRecommendations } from '@/src/api/products';
 
 const HomeScreen: FC = () => {
+  const navigation = useNavigation<RootStackNavigationProp>();
+  const [query, setQuery] = useState<string>('');
+
   const slides = [
     {
       id: '1',
@@ -56,6 +64,17 @@ const HomeScreen: FC = () => {
     },
   ];
 
+  useFocusEffect(
+    useCallback(() => {
+      setQuery('');
+    }, []),
+  );
+
+  const handleSubmit = (value: string): void => {
+    if (!value.trim()) return;
+    navigation.navigate('Search', { initialQuery: value });
+  };
+
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <ScrollView
@@ -87,9 +106,9 @@ const HomeScreen: FC = () => {
             />
           </View>
 
-          {Platform.select({
-            android: <SearchBar />,
-          })}
+          {Platform.OS === 'android' && (
+            <SearchBar value={query} onChangeText={setQuery} onSubmit={handleSubmit} />
+          )}
           <HomeMenu items={menuItems} />
         </View>
 

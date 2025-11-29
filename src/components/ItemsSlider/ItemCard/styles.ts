@@ -12,6 +12,17 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 
+  listCard: {
+    width: '49%',
+    padding: 15,
+    position: 'relative',
+    borderWidth: 1,
+    borderColor: '#393836',
+    borderStyle: 'solid',
+    overflow: 'hidden',
+    justifyContent: 'space-between',
+  },
+
   badge: {
     backgroundColor: '#FFB84C',
     paddingVertical: 4,
